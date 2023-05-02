@@ -4,6 +4,7 @@ services:
     init: true
     environment:
       - TZ=Europe/London
+    network_mode: host
     ports:
       - "3478:3478/udp" # STUN
       - "8080:8080/tcp" # Device/ controller comm.
@@ -17,8 +18,9 @@ services:
     image: ghcr.io/unpoller/unpoller
     environment:
       - UP_INFLUXDB_DISABLE=true
-      - UP_UNIFI_DEFAULT_URL=https://controller:8443
+      - UP_UNIFI_DEFAULT_URL=https://localhost:8443
       - UP_UNIFI_DEFAULT_USER=${UNIFI_USER}
       - UP_UNIFI_DEFAULT_PASS=${UNIFI_PASS}
+    network_mode: host
     ports:
       - "9130:9130"
