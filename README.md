@@ -20,3 +20,13 @@ docker compose up
 Then open:
 
 - [Unifi console](http://localhost:8443/)
+
+### Can't use Docker Compose?
+
+For environments where Docker Compose won't work (for example, because
+you're running a really old Mac as a server), you can run it in Vagrant
+with Virtualbox like so:
+
+```
+vagrant up
+```
