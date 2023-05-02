@@ -23,6 +23,8 @@ Vagrant.configure("2") do |config|
     guest: 6789, host: 6789
   config.vm.network "forwarded_port",
     guest: 10001, host: 10001, protocol: "udp"
+  config.vm.network "forwarded_port",
+    guest: 9130, host: 9130
 
   config.vm.provision :docker
   config.vm.provision "shell", inline: <<-SHELL
