@@ -8,6 +8,11 @@ Vagrant.configure("2") do |config|
   config.vm.network "public_network",
     bridge: "en0: Ethernet"
 
+  config.vm.synced_folder ".", "/vagrant", type: "nfs",
+    nfs_udp: false
+  # Required for nfs folder sharing
+  config.vm.network "private_network", type: "dhcp"
+
   config.vm.network "forwarded_port",
     guest: 3478, host: 3478, protocol: "udp"
   config.vm.network "forwarded_port",
