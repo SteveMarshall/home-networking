@@ -1,4 +1,4 @@
-# `home-monitoring`
+# `home-networking`
 
 Configuration and tools to manage my home network.
 
