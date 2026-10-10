@@ -13,23 +13,12 @@ Vagrant.configure("2") do |config|
   # Required for nfs folder sharing
   config.vm.network "private_network", type: "dhcp"
 
-  config.vm.network "forwarded_port",
-    guest: 3478, host: 3478, protocol: "udp"
-  config.vm.network "forwarded_port",
-    guest: 8080, host: 8080
-  config.vm.network "forwarded_port",
-    guest: 8443, host: 8443
-  config.vm.network "forwarded_port",
-    guest: 6789, host: 6789
-  config.vm.network "forwarded_port",
-    guest: 10001, host: 10001, protocol: "udp"
-  config.vm.network "forwarded_port",
-    guest: 9130, host: 9130
-
   config.vm.provision :docker
   config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt install -y avahi-daemon
     cd /vagrant
     docker compose stop
-    docker compose up -d
+    docker compose up -d --pull always --force-recreate
   SHELL
 end
